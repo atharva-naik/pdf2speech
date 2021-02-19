@@ -1,0 +1,11 @@
+colr
+nltk 
+emoji
+numpy
+distro
+pillow
+pyttsx3
+pdf2image
+ansicolors
+python-vlc
+pytesseract

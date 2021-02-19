@@ -1,0 +1,9 @@
+nltk 
+emoji
+numpy
+distro
+pillow
+pyttsx3
+pdf2image
+ansicolors
+pytesseract
