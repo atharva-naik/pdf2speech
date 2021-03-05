@@ -19,6 +19,11 @@ class Engine:
         if o:
             self.o = o
 
+    def dump_to(self, text, op_path):
+        self.engine.save_to_file(text, op_path)
+        self.engine.runAndWait()
+
+        return op_path
 
     def speak(self, text=None):
         if not(text):

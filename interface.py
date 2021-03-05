@@ -1,3 +1,4 @@
+import colour
 import random
 from colors import color
 from colr import Colr as C
@@ -24,6 +25,18 @@ else:
     import atexit
     from select import select
 
+def apply_gradient(text, clrs):
+    assert len(clrs) > 0, "number of colours should be non zero"
+    res = ""
+    stepsizes = [int(len(text)/(len(clrs)-1)) for i in range(len(clrs)-1)]
+    if len(text) <= 0:
+        return text
+    for i,clr in enumerate(clrs[:-1]):
+        c_init = colour.Color(clr)
+        for j,clrx in enumerate(c_init.range_to(colour.Color(clrs[i+1]), stepsizes[i])):
+            res += color(text[stepsizes[i]*i+j], fg=str(clrx))
+          
+    return res
 
 class KBHit:
     '''

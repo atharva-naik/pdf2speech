@@ -13,7 +13,7 @@ from pdf2image.exceptions import (
 
 class PDF2IMG:
     def __init__(self, path):
-        self.path = path
+        self.path = os.path.abspath(path)
         self.rel_path = path.split('/')[-1] 
         self.op_path = None
         self.img_paths = []
@@ -29,8 +29,12 @@ class PDF2IMG:
         else:
             op_path = self.rel_path.replace(".pdf", "")
         
-        self.op_path = os.path.join(os.getcwd(), op_path)
-        os.mkdir(self.op_path)
+        self.op_path = os.path.join(os.path.dirname(self.path), op_path)
+        try:
+            os.mkdir(self.op_path)
+        except FileExistsError:
+            self.length = max([int(string.split(".")[0]) for string in os.listdir(self.op_path)])
+            return self.op_path
         print(color(f"Images saved at {self.op_path} ...", fg='blue', style='bold'))
         
         for i,image in enumerate(convert_from_path(self.path)):

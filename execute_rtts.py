@@ -6,6 +6,7 @@ import gtts
 import time
 import colour
 import argparse
+import tempfile
 from colors import color
 from pdf2speech.tts import Engine
 from pdf2speech.ocr import image2text
